@@ -26,8 +26,8 @@ class Board:
     def check_win(self, player):
 
         for i in range(3):
-            if ((all([self.board[i][j] == player for j in range(3)])) or
-                    (all([self.board[i][j] == player for j in range(3)]))):
+            if (all([self.board[i][j] == player for j in range(3)]) or
+                    all([self.board[j][i] == player for j in range(3)])):
                 return True
 
         if ((self.board[0][0] == self.board[1][1] == self.board[2][2] == player) or
@@ -35,6 +35,13 @@ class Board:
             return True
 
         return False
+
+    def save_result(self, result):
+
+        with open('results.txt', 'a', encoding='utf-8') as f:
+            f.write(result + '\n')
+
+
 
 
 
